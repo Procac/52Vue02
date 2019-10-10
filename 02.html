@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>1</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link type="text/css" rel="styleSheet"  href="02.css" />
+
+	</head>
+	<body>
+		<div id="demo">
+			<my-button></my-button>
+		</div>
+		<script type="text/javascript">
+			Vue.component('my-button', {
+				template: '<div><button @click="count++">+</button><input type="text" v-model="count"/><button @click="count--">-</button></div>',
+				data() {
+					return {
+						count: 1
+					}
+				},
+				watch:{
+					count(){
+						var reg= new RegExp(/^\D\d|\d\D|\D$/);
+						if (this.count < 1) {
+							alert('数量为1，不能再减')
+							this.count=1;
+						}
+						if(reg.test(this.count)){
+							alert('输入数据不合法');
+							this.count=1;
+						}
+					}
+				}
+				
+			})
+			new Vue({
+				el: '#demo',
+			})
+		</script>
+	</body>
+</html>

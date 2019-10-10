@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<link type="text/css" rel="styleSheet"  href="01.css" />
+</head
+<body>
+  <div id="app">
+    <div class="menuList">
+      <ul>
+        <li v-for="(item,index) in list" :key="item.id" :class="{active:num==index}" @click="getNum(index)">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+    <div class="tabCon">
+      <div v-for='(itemCon,index) in tabContents' v-show="index == num">
+        {{itemCon}}
+      </div>
+    </div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          num: 0,
+          list: ["选项一", "选项二", "选项三"],
+          tabContents: ["淘宝", "天猫", "京东"],
+        }
+      },
+
+      methods: {
+        getNum(index) {
+          this.num = index;
+        }
+      }
+
+    })
+  </script>
+
+</body>
+
+</html>
